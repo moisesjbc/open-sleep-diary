@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, StyleSheet, View, TextInput, Button } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import TimeInput from '../widgets/TimeInput';
+import WakeUpInput from '../widgets/WakeUpInput';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,13 +14,13 @@ export default function SleepEntry(props) {
   const {date = "28/05/2020"} = props;
 
   const { control, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = newData => setData({...newData})
+  const onSubmit = newData => setData({...newData, date})
 
   const [data, setData] = useState({});
 
   return (
     <View style={styles.container}>
-      <Text>{ date }</Text>
+      <Text>Date: { date }</Text>
 
       <Controller
         control={control}
@@ -30,9 +31,18 @@ export default function SleepEntry(props) {
         defaultValue=""
       />
 
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <WakeUpInput time={value.time} note={value.note} onBlur={onBlur} onChange={onChange} />
+        )}
+        name="wakeUp"
+        defaultValue={{}}
+      />
+
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
 
-      <Text>{ JSON.stringify(data) }</Text>
+      <Text>{ JSON.stringify(data, null, 4) }</Text>
     </View>
   );
 }
