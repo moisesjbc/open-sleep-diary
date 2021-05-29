@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, View, TextInput, Button } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import TimeInput from '../widgets/TimeInput';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,18 +21,12 @@ export default function SleepEntry(props) {
     <View style={styles.container}>
       <Text>{ date }</Text>
 
-      <Text>Start hour</Text>
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
+          <TimeInput onBlur={onBlur} onChange={onChange} time={value} label="Start hour" />
         )}
-        name="startHour"
+        name="startTime"
         defaultValue=""
       />
 
