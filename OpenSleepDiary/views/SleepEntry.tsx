@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, TextInput, Button } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import TimeInput from '../widgets/TimeInput';
 import WakeUpInput from '../widgets/WakeUpInput';
+import InputsList from '../widgets/InputsList';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,10 +35,10 @@ export default function SleepEntry(props) {
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
-          <WakeUpInput time={value.time} note={value.note} onBlur={onBlur} onChange={onChange} />
+            <InputsList label="Wake ups" inputsData={value} inputComponent={WakeUpInput} onBlur={onBlur} onChange={onChange} />
         )}
         name="wakeUp"
-        defaultValue={{}}
+        defaultValue={[]}
       />
 
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
