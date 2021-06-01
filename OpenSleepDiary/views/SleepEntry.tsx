@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, TextInput, Button } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import TimeInput from '../widgets/TimeInput';
 import WakeUpInput from '../widgets/WakeUpInput';
-import InputsList from '../widgets/InputsList';
+import InputsList, { InputsListProps } from '../widgets/InputsList';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,10 +34,45 @@ export default function SleepEntry(props) {
 
       <Controller
         control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-            <InputsList label="Wake ups" inputsData={value} inputComponent={WakeUpInput} onBlur={onBlur} onChange={onChange} />
-        )}
+        render={({ field: { onChange, onBlur, value } }) => {
+            const props: InputsListProps = {
+              label: "Wake ups",
+              renderElement: (element: object|string, onBlur: Function, onChange: Function) => (
+                <WakeUpInput
+                  value={element}
+                  onBlur={onBlur}
+                  onChange={onChange} />
+              ),
+              inputsData: value,
+              emptyElement: {},
+              onBlur,
+              onChange
+            }
+            return <InputsList {...props} />
+        }}
         name="wakeUp"
+        defaultValue={[]}
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => {
+            const props: InputsListProps = {
+              label: "Dinner",
+              renderElement: (element: object|string, onBlur: Function, onChange: Function) => (
+                <TextInput
+                  value={element}
+                  onBlur={onBlur}
+                  onChangeText={onChange} />
+              ),
+              inputsData: value,
+              emptyElement: "",
+              onBlur,
+              onChange
+            }
+            return <InputsList {...props} />
+        }}
+        name="dinner"
         defaultValue={[]}
       />
 

@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
 });
 
 export default function WakeUpInput(props) {
-  const {data = {}, onBlur, onChange} = props;
-  const {time, note} = data;
+  const {value = {}, onBlur, onChange} = props;
+  const {time, note} = value;
 
   return (
     <View style={styles.container}>
