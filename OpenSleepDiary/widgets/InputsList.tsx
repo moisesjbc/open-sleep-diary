@@ -1,6 +1,5 @@
-import React, { useState, JSX } from "react";
+import React from "react";
 import { Text, StyleSheet, View, Button } from "react-native";
-import WakeUpInput from "./WakeUpInput"
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +23,7 @@ export type InputsListProps = {
 export default function InputsList(props: InputsListProps) {
   const {label, renderElement, inputsData, emptyElement={}, onBlur, onChange} = props;
 
-  const onChangeElement = (index: number) => (value) =>
+  const onChangeElement = (index: number) => (value: object) =>
     onChange([...inputsData.slice(0, index), value, ...inputsData.slice(index+1)]);
   const deleteElement = (index: number) => () =>
     onChange([...inputsData.slice(0, index), ...inputsData.slice(index+1)]);
