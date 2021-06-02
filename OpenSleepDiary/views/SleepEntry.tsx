@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import TimeInput from '../widgets/TimeInput';
 import WakeUpInput from '../widgets/WakeUpInput';
 import InputsList, { InputsListProps } from '../widgets/InputsList';
+import NumberInput from "../widgets/NumberInput";
 
 const styles = StyleSheet.create({
   container: {
@@ -74,6 +75,19 @@ export default function SleepEntry(props) {
         }}
         name="dinner"
         defaultValue={[]}
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+            <NumberInput
+              label="Nap duration (minutes)"
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange} />
+        )}
+        name="napDuration"
+        defaultValue=""
       />
 
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
