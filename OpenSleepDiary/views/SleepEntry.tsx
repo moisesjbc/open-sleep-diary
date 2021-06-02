@@ -90,6 +90,73 @@ export default function SleepEntry(props) {
         defaultValue=""
       />
 
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <View>
+            <Text>Exercise</Text>
+            <TextInput
+              value={value}
+              onBlur={onBlur}
+              onChangeText={onChange} />
+          </View>
+        )}
+        name="exercise"
+        defaultValue=""
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <View>
+            <Text>Shower</Text>
+            <TextInput
+              value={value}
+              onBlur={onBlur}
+              onChangeText={onChange} />
+          </View>
+        )}
+        name="shower"
+        defaultValue=""
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <View>
+            <Text>Medicine</Text>
+            <TextInput
+              value={value}
+              onBlur={onBlur}
+              onChangeText={onChange} />
+          </View>
+        )}
+        name="medicine"
+        defaultValue=""
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => {
+            const props: InputsListProps = {
+              label: "Notes",
+              renderElement: (element: object|string, onBlur: Function, onChange: Function) => (
+                <TextInput
+                  value={element}
+                  onBlur={onBlur}
+                  onChangeText={onChange} />
+              ),
+              inputsData: value,
+              emptyElement: "",
+              onBlur,
+              onChange
+            }
+            return <InputsList {...props} />
+        }}
+        name="notes"
+        defaultValue={[]}
+      />
+
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
 
       <Text>{ JSON.stringify(data, null, 4) }</Text>
