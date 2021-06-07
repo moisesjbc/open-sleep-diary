@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, View, TextInput, Button } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import TimeInput from '../widgets/TimeInput';
 import WakeUpInput from '../widgets/WakeUpInput';
 import InputsList, { InputsListProps } from '../widgets/InputsList';
 import NumberInput from "../widgets/NumberInput";
+import database from "../database/database";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,17 +13,41 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function SleepEntry(props) {
-  const {date = "28/05/2020"} = props;
+export default function SleepEntry() {
+  const date = new Date(2021, 5, 30, 15);
 
-  const { control, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = newData => setData({...newData, date})
+  const { control, handleSubmit, setValue, formState: { errors } } = useForm();
+  const [data, setData] = useState<object>({});
 
-  const [data, setData] = useState({});
+  // Load data from database
+  useEffect(() => {
+    database.getSleepEntry(date).then(doc => {
+      if (doc) {
+        setData(doc);
+      }
+    });
+  }, []);
+
+  // Update form each time init data is loaded.
+  useEffect(() => {
+    for (const [key, value] of Object.entries(data)) {
+      setValue(key, value, {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
+    }
+  }, [data]);
+
+  // Submit data to database
+  const onSubmit = (newData: object) => {
+    database.saveSleepEntry({...newData, date}).then(res => {
+      setData(res);
+    })
+  }
 
   return (
     <View style={styles.container}>
-      <Text>Date: { date }</Text>
+      <Text>Date: { date.toString() }</Text>
 
       <Controller
         control={control}
@@ -158,8 +183,6 @@ export default function SleepEntry(props) {
       />
 
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
-
-      <Text>{ JSON.stringify(data, null, 4) }</Text>
     </View>
   );
 }
