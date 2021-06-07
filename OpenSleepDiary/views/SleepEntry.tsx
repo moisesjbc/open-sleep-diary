@@ -195,6 +195,21 @@ export default function SleepEntry() {
         defaultValue={[]}
       />
 
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <View>
+            <Text>Status when waking up</Text>
+            <TextInput
+              value={value}
+              onBlur={onBlur}
+              onChangeText={onChange} />
+          </View>
+        )}
+        name="wakeUpStatus"
+        defaultValue=""
+      />
+
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
     </View>
   );
