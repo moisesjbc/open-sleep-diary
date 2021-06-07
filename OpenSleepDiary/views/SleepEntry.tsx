@@ -52,59 +52,6 @@ export default function SleepEntry() {
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TimeInput onBlur={onBlur} onChange={onChange} time={value} label="Start hour" />
-        )}
-        name="startTime"
-        defaultValue=""
-      />
-
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => {
-            const props: InputsListProps = {
-              label: "Wake ups",
-              renderElement: (element: object|string, onBlur: Function, onChange: Function) => (
-                <WakeUpInput
-                  value={element}
-                  onBlur={onBlur}
-                  onChange={onChange} />
-              ),
-              inputsData: value,
-              emptyElement: {},
-              onBlur,
-              onChange
-            }
-            return <InputsList {...props} />
-        }}
-        name="wakeUp"
-        defaultValue={[]}
-      />
-
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => {
-            const props: InputsListProps = {
-              label: "Dinner",
-              renderElement: (element: object|string, onBlur: Function, onChange: Function) => (
-                <TextInput
-                  value={element}
-                  onBlur={onBlur}
-                  onChangeText={onChange} />
-              ),
-              inputsData: value,
-              emptyElement: "",
-              onBlur,
-              onChange
-            }
-            return <InputsList {...props} />
-        }}
-        name="dinner"
-        defaultValue={[]}
-      />
-
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
             <NumberInput
               label="Nap duration (minutes)"
               value={value}
@@ -143,6 +90,28 @@ export default function SleepEntry() {
         )}
         name="shower"
         defaultValue=""
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => {
+            const props: InputsListProps = {
+              label: "Dinner",
+              renderElement: (element: object|string, onBlur: Function, onChange: Function) => (
+                <TextInput
+                  value={element}
+                  onBlur={onBlur}
+                  onChangeText={onChange} />
+              ),
+              inputsData: value,
+              emptyElement: "",
+              onBlur,
+              onChange
+            }
+            return <InputsList {...props} />
+        }}
+        name="dinner"
+        defaultValue={[]}
       />
 
       <Controller
@@ -192,6 +161,37 @@ export default function SleepEntry() {
             return <InputsList {...props} />
         }}
         name="notes"
+        defaultValue={[]}
+      />      
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TimeInput onBlur={onBlur} onChange={onChange} time={value} label="Start hour" />
+        )}
+        name="startTime"
+        defaultValue=""
+      />
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => {
+            const props: InputsListProps = {
+              label: "Wake ups",
+              renderElement: (element: object|string, onBlur: Function, onChange: Function) => (
+                <WakeUpInput
+                  value={element}
+                  onBlur={onBlur}
+                  onChange={onChange} />
+              ),
+              inputsData: value,
+              emptyElement: {},
+              onBlur,
+              onChange
+            }
+            return <InputsList {...props} />
+        }}
+        name="wakeUp"
         defaultValue={[]}
       />
 
