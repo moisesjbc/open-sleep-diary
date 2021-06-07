@@ -162,6 +162,19 @@ export default function SleepEntry() {
 
       <Controller
         control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TimeInput
+            onBlur={onBlur}
+            onChange={onChange}
+            time={value}
+            label="PC left at" />
+        )}
+        name="pcLeftAt"
+        defaultValue=":"
+      />
+      
+      <Controller
+        control={control}
         render={({ field: { onChange, onBlur, value } }) => {
             const props: InputsListProps = {
               label: "Notes",
