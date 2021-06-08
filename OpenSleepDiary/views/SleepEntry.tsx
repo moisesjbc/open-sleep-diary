@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, StyleSheet, View, TextInput, Button } from "react-native";
+import { Text, StyleSheet, View, ScrollView, TextInput, Button } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import TimeInput from '../widgets/TimeInput';
 import WakeUpInput from '../widgets/WakeUpInput';
@@ -13,8 +13,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function SleepEntry() {
-  const date = new Date(2021, 5, 30, 15);
+export default function SleepEntry({route}) {
+  let { date } = route.params;
+  date = new Date(date);
 
   const { control, handleSubmit, setValue, formState: { errors } } = useForm();
   const [data, setData] = useState<object>({});
@@ -46,7 +47,7 @@ export default function SleepEntry() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text>Date: { date.toString() }</Text>
 
       <Controller
@@ -211,6 +212,6 @@ export default function SleepEntry() {
       />
 
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
-    </View>
+    </ScrollView>
   );
 }

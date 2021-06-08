@@ -7,29 +7,19 @@ class Database {
         this.db = new Datastore({ filename: 'sleep-entries', autoload: true });
     }
 
-    public getSleepEntry(day: Date) {
-        const nextDay = new Date(day);
-        nextDay.setDate(nextDay.getDate() + 1);;
-        const query = {
-            "date": {
-                "$gte" : day, 
-                "$lt" : nextDay
-            }
+    private dateQuery(day: Date) {
+        return {
+            "date": day
         }
-        return this.db.findOneAsync(query);
+    }
+
+    public getSleepEntry(day: Date) {
+        return this.db.findOneAsync({"date": day});
     }
 
     public saveSleepEntry(data: MongoDocument) {
         if (data._id) {
-            const nextDay = new Date(data.date);
-            nextDay.setDate(nextDay.getDate() + 1);;
-            const query = {
-                "date": {
-                    "$gte" : data.date, 
-                    "$lt" : nextDay
-                }
-            }
-            return this.db.updateAsync(query, data);
+            return this.db.updateAsync({_id: data._id}, data);
         } else {
             return this.db.insertAsync(data);
         }
