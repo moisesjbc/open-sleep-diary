@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import SleepEntry from './views/SleepEntry';
-import Home from './views/Home';
+import SleepEntry from './src/views/SleepEntry';
+import Home from './src/views/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
