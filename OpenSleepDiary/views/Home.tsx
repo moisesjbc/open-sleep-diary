@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -10,16 +10,45 @@ const styles = StyleSheet.create({
 
 
 export default function Home({ navigation }) {
-  const previousWeek = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-  previousWeek.setDate(previousWeek.getDate() - 6);
-  const dates = [];
-  for (let i=0; i<7; i++) {
-    dates.push(new Date(previousWeek));
-    previousWeek.setDate(previousWeek.getDate() + 1)
+  const getStartDate = (refDate: Date) => {
+    const startDate = new Date(refDate.getFullYear(), refDate.getMonth(), refDate.getDate());
+    startDate.setDate(startDate.getDate() - 6);
+    return startDate;
   }
+
+  const [startDate, setStartDate] = useState<Date>(getStartDate(new Date()));
+
+  const goToPreviousDays = () => {
+    const newStartDate = new Date(startDate);
+    newStartDate.setDate(newStartDate.getDate() - 7);
+    setStartDate(newStartDate);
+  }
+
+  const goToNextDays = () => {
+    const newStartDate = new Date(startDate);
+    newStartDate.setDate(newStartDate.getDate() + 7);
+    setStartDate(newStartDate);
+  }
+
+  const getDates = () => {
+    const dates = [];
+    let tmpDate = new Date(startDate);
+    for (let i=0; i<7; i++) {
+      dates.push(new Date(tmpDate));
+      tmpDate.setDate(tmpDate.getDate() + 1)
+    }
+    return dates;
+  }
+
+  const dates = getDates();
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <TouchableOpacity
+          style={styles.button}
+          onPress={goToPreviousDays}>
+            <Text>Previous</Text>
+        </TouchableOpacity>
       {(dates.map((date, index) => (
         <TouchableOpacity
           key={index}
@@ -28,6 +57,11 @@ export default function Home({ navigation }) {
             <Text>{`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`}</Text>
         </TouchableOpacity>
       )))}
+      <TouchableOpacity
+          style={styles.button}
+          onPress={goToNextDays}>
+            <Text>Next</Text>
+      </TouchableOpacity>
     </View>
   );
 }
