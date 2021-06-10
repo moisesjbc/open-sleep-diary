@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { exportToCsvFile } from '../services/csv.service';
 
 const styles = StyleSheet.create({
   button: {
@@ -40,10 +41,20 @@ export default function Home({ navigation }) {
     return dates;
   }
 
+  const exportToCsv = () => {
+    exportToCsvFile(dates[0], dates[dates.length - 1]);
+  }
+
   const dates = getDates();
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <TouchableOpacity
+          style={styles.button}
+          onPress={exportToCsv}>
+            <Text>Export to CSV</Text>
+        </TouchableOpacity>
+
       <TouchableOpacity
           style={styles.button}
           onPress={goToPreviousDays}>

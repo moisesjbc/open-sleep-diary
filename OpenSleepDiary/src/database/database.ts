@@ -17,6 +17,15 @@ class Database {
         return this.db.findOneAsync({"date": day});
     }
 
+    public getSleepEntries(startDate: Date, endDate: Date) {
+        return this.db.findAsync({
+            "date": {
+                "$gte": startDate,
+                "$lte": endDate
+            }
+        });
+    }
+
     public saveSleepEntry(data: MongoDocument) {
         if (data._id) {
             return this.db.updateAsync({_id: data._id}, data);

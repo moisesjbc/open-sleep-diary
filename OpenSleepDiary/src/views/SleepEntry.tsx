@@ -6,6 +6,7 @@ import WakeUpInput from '../widgets/WakeUpInput';
 import InputsList, { InputsListProps } from '../widgets/InputsList';
 import NumberInput from "../widgets/NumberInput";
 import database from "../database/database";
+import { SleepEntryField } from '../types/SleepEntryField';
 
 const styles = StyleSheet.create({
   container: {
@@ -59,7 +60,7 @@ export default function SleepEntry({route}) {
               onBlur={onBlur}
               onChange={onChange} />
         )}
-        name="napDuration"
+        name={SleepEntryField.NAP_DURATION}
         defaultValue=""
       />
 
@@ -74,7 +75,7 @@ export default function SleepEntry({route}) {
               onChangeText={onChange} />
           </View>
         )}
-        name="exercise"
+        name={SleepEntryField.EXERCISE}
         defaultValue=""
       />
 
@@ -89,7 +90,7 @@ export default function SleepEntry({route}) {
               onChangeText={onChange} />
           </View>
         )}
-        name="shower"
+        name={SleepEntryField.SHOWER}
         defaultValue=""
       />
 
@@ -111,7 +112,7 @@ export default function SleepEntry({route}) {
             }
             return <InputsList {...props} />
         }}
-        name="dinner"
+        name={SleepEntryField.DINNER}
         defaultValue={[]}
       />
 
@@ -126,7 +127,7 @@ export default function SleepEntry({route}) {
               onChangeText={onChange} />
           </View>
         )}
-        name="medicine"
+        name={SleepEntryField.MEDICINE}
         defaultValue=""
       />
 
@@ -139,7 +140,7 @@ export default function SleepEntry({route}) {
             time={value}
             label="PC left at" />
         )}
-        name="pcLeftAt"
+        name={SleepEntryField.PC_LEFT_AT}
         defaultValue=":"
       />
       
@@ -161,7 +162,7 @@ export default function SleepEntry({route}) {
             }
             return <InputsList {...props} />
         }}
-        name="notes"
+        name={SleepEntryField.NOTES}
         defaultValue={[]}
       />      
 
@@ -170,7 +171,7 @@ export default function SleepEntry({route}) {
         render={({ field: { onChange, onBlur, value } }) => (
           <TimeInput onBlur={onBlur} onChange={onChange} time={value} label="Start hour" />
         )}
-        name="startTime"
+        name={SleepEntryField.START_TIME}
         defaultValue=""
       />
 
@@ -192,7 +193,7 @@ export default function SleepEntry({route}) {
             }
             return <InputsList {...props} />
         }}
-        name="wakeUp"
+        name={SleepEntryField.WAKE_UPS}
         defaultValue={[]}
       />
 
@@ -207,7 +208,7 @@ export default function SleepEntry({route}) {
               onChangeText={onChange} />
           </View>
         )}
-        name="wakeUpStatus"
+        name={SleepEntryField.WAKE_UP_STATUS}
         defaultValue=""
       />
 
