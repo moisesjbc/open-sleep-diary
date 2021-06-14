@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { exportToCsvFile } from '../services/csv.service';
+import { exportToCsvFile } from '../services/export.service';
 
 const styles = StyleSheet.create({
   button: {

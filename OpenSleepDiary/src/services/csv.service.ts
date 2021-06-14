@@ -1,18 +1,8 @@
 import { SleepEntryField } from '../types/SleepEntryField';
-import database from '../database/database';
-
-export function exportToCsvFile(startDate: Date, endDate: Date) {
-    database.getSleepEntries(startDate, endDate).then((values) => {
-        console.log('THEN', values)
-        _exportToCsv(values);
-    }).catch(err => {
-        console.error(err);
-    });
-}
 
 const MAX_WAKE_UPS = 5;
 
-function _exportToCsv(sleepEntries: Array<Object>) {
+export function sleepEntriesToCsvStr(sleepEntries: Array<Object>): string {
     const csvRows: Array<string> = [];
 
     const COLUMNS_DATA: Array<[string, string, Function?]> = [
@@ -55,7 +45,7 @@ function _exportToCsv(sleepEntries: Array<Object>) {
         csvRows.push(csvRow);
     });
 
-    console.log('CSV', csvRows.join('\n'));
+    return csvRows.join('\n');
 }
 
 function padNumber(number: number, maxChars: number): string {
