@@ -8,10 +8,10 @@ export function sleepEntriesToCsvStr(sleepEntries: Array<Object>): string {
         [SleepEntryField.NAP_DURATION, "Nap"],
         [SleepEntryField.EXERCISE, "Excercise"],
         [SleepEntryField.SHOWER, "Shower"],
-        [SleepEntryField.DINNER, "Dinner", (dinner: Array<string>) => '"' + dinner.join(', ') + '"'],
+        [SleepEntryField.DINNER, "Dinner", (dinner: Array<string>) => '"-' + dinner.join('\n-') + '"'],
         [SleepEntryField.MEDICINE, "Medicine"],
         [SleepEntryField.PC_LEFT_AT, "PC left at"],
-        [SleepEntryField.NOTES, "Notes", (notes: Array<string>) => '"' + notes.join(', ') + '"'],
+        [SleepEntryField.NOTES, "Notes", (notes: Array<string>) => '"-' + notes.join('\n-') + '"'],
         [SleepEntryField.START_TIME, "Start time"],
         [SleepEntryField.WAKE_UPS, "Wake ups", wakeUpsToStr]
     ];
