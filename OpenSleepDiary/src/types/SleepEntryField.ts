@@ -8,6 +8,5 @@ export enum SleepEntryField {
     PC_LEFT_AT = 'pcLeftAt',
     NOTES = 'notes',
     START_TIME = 'startTime',
-    WAKE_UPS = 'wakeUps',
-    WAKE_UP_STATUS = 'wakeUpStatus'
+    WAKE_UPS = 'wakeUps'
 }

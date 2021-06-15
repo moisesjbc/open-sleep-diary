@@ -1,7 +1,5 @@
 import { SleepEntryField } from '../types/SleepEntryField';
 
-const MAX_WAKE_UPS = 5;
-
 export function sleepEntriesToCsvStr(sleepEntries: Array<Object>): string {
     const csvRows: Array<string> = [];
 
@@ -15,19 +13,14 @@ export function sleepEntriesToCsvStr(sleepEntries: Array<Object>): string {
         [SleepEntryField.PC_LEFT_AT, "PC left at"],
         [SleepEntryField.NOTES, "Notes", (notes: Array<string>) => '"' + notes.join(', ') + '"'],
         [SleepEntryField.START_TIME, "Start time"],
-        [SleepEntryField.WAKE_UPS, "Wake ups", wakeUpsToStr],
-        [SleepEntryField.WAKE_UP_STATUS, "Wake up status"]
+        [SleepEntryField.WAKE_UPS, "Wake ups", wakeUpsToStr]
     ];
 
     let headerRow = "";
-    COLUMNS_DATA.slice(0, -1).forEach(columnData => {
+    COLUMNS_DATA.forEach(columnData => {
         const label = columnData[1];
         headerRow += `"${label}",`
     });
-    for (let i=0; i<MAX_WAKE_UPS; i++) {
-        headerRow += ',';
-    }
-    headerRow += `"${COLUMNS_DATA[COLUMNS_DATA.length - 1][1]}"`;
     csvRows.push(headerRow);
 
     sleepEntries.forEach(sleepEntry => {
@@ -59,12 +52,7 @@ function padNumber(number: number, maxChars: number): string {
 }
 
 function wakeUpsToStr(wakeUps: Array<object>): string {
-    let wakeUpsStr = "";
-    wakeUpsStr += wakeUps.reduce((accum: String, wakeUp: object) => {
+    return wakeUps.reduce((accum: String, wakeUp: object) => {
         return `${accum}"${wakeUp['time']} (${wakeUp['note']})",`
     }, "");
-    for (let i=wakeUps.length; i<MAX_WAKE_UPS; i++) {
-        wakeUpsStr += ',';
-    }
-    return wakeUpsStr;
 }
