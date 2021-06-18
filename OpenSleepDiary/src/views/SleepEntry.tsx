@@ -27,6 +27,8 @@ export default function SleepEntry({route}) {
       if (doc) {
         setData(doc);
       }
+    }).catch(error => {
+      alert(`ERROR retrieving data from database: ${error}`);
     });
   }, []);
 
@@ -43,7 +45,10 @@ export default function SleepEntry({route}) {
   // Submit data to database
   const onSubmit = (newData: object) => {
     database.saveSleepEntry({...newData, date}).then(res => {
+      alert('Data saved to database');
       setData(res);
+    }).catch(error => {
+      alert(`ERROR saving data to database: ${error}`);
     })
   }
 
