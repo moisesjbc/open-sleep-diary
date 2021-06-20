@@ -7,22 +7,20 @@ class Database {
         this.db = new Datastore({ filename: 'sleep-entries', autoload: true });
     }
 
-    private dateQuery(day: Date) {
-        return {
-            "date": day
-        }
-    }
-
     public getSleepEntry(day: Date) {
         return this.db.findOneAsync({"date": day});
     }
 
     public getSleepEntries(startDate: Date, endDate: Date) {
-        return this.db.findAsync({
-            "date": {
-                "$gte": startDate,
-                "$lte": endDate
-            }
+        return new Promise((resolve, reject) => {
+            this.db.findAsync({
+                "date": {
+                    "$gte": startDate,
+                    "$lte": endDate
+                }
+            }).then(result => {
+                resolve(result.sort((a, b) => a['date'] - b['date']))
+            }).catch(reject);
         });
     }
 
