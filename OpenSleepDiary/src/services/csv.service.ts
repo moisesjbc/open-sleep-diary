@@ -1,4 +1,5 @@
 import { SleepEntryField } from '../types/SleepEntryField';
+import { padNumber } from './number.service';
 
 export function sleepEntriesToCsvStr(sleepEntries: Array<Object>): string {
     const csvRows: Array<string> = [];
@@ -39,16 +40,6 @@ export function sleepEntriesToCsvStr(sleepEntries: Array<Object>): string {
     });
 
     return csvRows.join('\n');
-}
-
-function padNumber(number: number, maxChars: number): string {
-    let numberStr = "" + number;
-
-    while (numberStr.length < maxChars) {
-        numberStr = "0" + numberStr;
-    }
-
-    return numberStr;
 }
 
 function wakeUpsToStr(wakeUps: Array<object>): string {

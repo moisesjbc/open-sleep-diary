@@ -1,6 +1,7 @@
 import database from '../database/database';
 import { StorageAccessFramework } from 'expo-file-system';
 import { sleepEntriesToCsvStr } from './csv.service';
+import { padNumber } from './number.service';
 
 export function exportToCsvFile(startDate: Date, endDate: Date) {
     const FILE_NAME = `OpenSleepDiary_${_dateToStr(startDate)}__${_dateToStr(endDate)}.csv`;
@@ -22,5 +23,5 @@ export function exportToCsvFile(startDate: Date, endDate: Date) {
 }
 
 function _dateToStr(date: Date): string {
-    return `${date.getFullYear()}_${date.getMonth()+1}_${date.getDate()}`;
+    return `${date.getFullYear()}_${padNumber(date.getMonth()+1, 2)}_${padNumber(date.getDate(), 2)}`;
 }
