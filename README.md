@@ -1,4 +1,7 @@
 # open-sleep-diary
 
-cd OpenSleepDiary/
-expo build:android -t apk --no-publish
+1. Update version number in app.json
+2. Build
+
+        cd OpenSleepDiary/
+        expo build:android -t apk --no-publish
