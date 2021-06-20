@@ -11,6 +11,13 @@ import { SleepEntryField } from '../types/SleepEntryField';
 const styles = StyleSheet.create({
   container: {
     marginTop: 30,
+  },
+  textInput: {
+    width: '90%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    borderWidth: 1,
+    padding: 2
   }
 });
 
@@ -77,7 +84,8 @@ export default function SleepEntry({route}) {
             <TextInput
               value={value}
               onBlur={onBlur}
-              onChangeText={onChange} />
+              onChangeText={onChange}
+              style={styles.textInput} />
           </View>
         )}
         name={SleepEntryField.EXERCISE}
@@ -92,7 +100,8 @@ export default function SleepEntry({route}) {
             <TextInput
               value={value}
               onBlur={onBlur}
-              onChangeText={onChange} />
+              onChangeText={onChange}
+              style={styles.textInput} />
           </View>
         )}
         name={SleepEntryField.SHOWER}
@@ -108,7 +117,8 @@ export default function SleepEntry({route}) {
                 <TextInput
                   value={element}
                   onBlur={onBlur}
-                  onChangeText={onChange} />
+                  onChangeText={onChange}
+                  style={styles.textInput} />
               ),
               inputsData: value,
               emptyElement: "",
@@ -129,7 +139,8 @@ export default function SleepEntry({route}) {
             <TextInput
               value={value}
               onBlur={onBlur}
-              onChangeText={onChange} />
+              onChangeText={onChange}
+              style={styles.textInput} />
           </View>
         )}
         name={SleepEntryField.MEDICINE}
@@ -158,7 +169,8 @@ export default function SleepEntry({route}) {
                 <TextInput
                   value={element}
                   onBlur={onBlur}
-                  onChangeText={onChange} />
+                  onChangeText={onChange}
+                  style={styles.textInput} />
               ),
               inputsData: value,
               emptyElement: "",

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     padding: 2
   },
   noteInput: {
-    minWidth: 200,
+    width: 200,
     borderWidth: 1,
     padding: 2
   }

@@ -3,10 +3,12 @@ import { Text, StyleSheet, View, Button } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   inputContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop: 5,
+    marginBottom: 5
   }
 });
 
