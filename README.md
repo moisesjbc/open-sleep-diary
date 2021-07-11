@@ -4,4 +4,4 @@
 2. Build
 
         cd OpenSleepDiary/
-        expo build:android -t apk --no-publish
+        expo build:android -t apk
