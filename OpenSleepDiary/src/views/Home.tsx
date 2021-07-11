@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 export default function Home({ navigation }) {
   const getStartDate = (refDate: Date) => {
     const startDate = new Date(refDate.getFullYear(), refDate.getMonth(), refDate.getDate());
-    startDate.setDate(startDate.getDate() - 6);
+    startDate.setDate(startDate.getDate() - 7);
     return startDate;
   }
 
