@@ -34,7 +34,7 @@ export default function Home({ navigation }) {
   const getDates = () => {
     const dates = [];
     let tmpDate = new Date(startDate);
-    for (let i=0; i<7; i++) {
+    for (let i=0; i<8; i++) {
       dates.push(new Date(tmpDate));
       tmpDate.setDate(tmpDate.getDate() + 1)
     }
